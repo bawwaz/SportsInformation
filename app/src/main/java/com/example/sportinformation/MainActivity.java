@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,7 +28,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Adapter.ContactsAdapterListener {
     RecyclerView rvKontakName;
     ArrayList<EPLTeamModel> listDataEPLTeams;
     private Adapter Adapter;
@@ -41,13 +42,13 @@ public class MainActivity extends AppCompatActivity {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject jsonObject) {
-//                            Log.d("sukses", "onResponse: "+jsonObject.toString());
 
                         try {
                             JSONArray jsonArrayEPLTeam = jsonObject.getJSONArray("teams");
                             for (int i = 0; i < jsonArrayEPLTeam.length() ; i++) {
                                 EPLTeamModel myTeam = new EPLTeamModel();
                                 JSONObject jsonTeam = jsonArrayEPLTeam.getJSONObject(i);
+                                myTeam.setTeamdescription(jsonTeam.getString("strDescriptionEN"));
                                 myTeam.setTeamname(jsonTeam.getString("strTeam"));
                                 myTeam.setStadiun(jsonTeam.getString("strStadium"));
                                 myTeam.setStrTeamBadge(jsonTeam.getString("strTeamBadge"));
@@ -100,6 +101,13 @@ public class MainActivity extends AppCompatActivity {
         listDataEPLTeams = new ArrayList<>();
 
         getEPLOnline();
+    }
+
+    @Override
+    public void onContactSelected(EPLTeamModel myteam){
+        Intent intent = new Intent(MainActivity.this, DetailTeamPage.class);
+        intent.putExtra("myteam", myteam);
+        startActivity(intent);
 
     }
 }
