@@ -6,7 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".Login">
 
+
+
+
     <EditText
+        android:textStyle="bold"
+        android:paddingLeft="40dp"
         android:id="@+id/Username"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -18,9 +23,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.8" />
+        app:layout_constraintWidth_percent="0.8"
+        android:background="@drawable/edittext_bg"/>
 
     <EditText
+        android:textStyle="bold"
+        android:paddingLeft="40dp"
         android:id="@+id/Password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -32,7 +40,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/Username"
-        app:layout_constraintWidth_percent="0.8" />
+        app:layout_constraintWidth_percent="0.8"
+        android:background="@drawable/edittext_bg"/>
 
     <Button
         android:id="@+id/btnLog"
@@ -43,7 +52,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Password" />
+        app:layout_constraintTop_toBottomOf="@id/Password"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
